@@ -21,3 +21,7 @@ void UMGMapGeneratorComponent::GenerateMap(const FString& MapSeed)
 	TArray<FString> Seed;
 	MapSeed.ParseIntoArray(Seed, TEXT(":"), true);
 }
+
+
+
+

@@ -6,7 +6,6 @@
 #include "Components/ActorComponent.h"
 #include "MGMapGeneratorComponent.generated.h"
 
-
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class GRIDMAPGENERATOR_API UMGMapGeneratorComponent : public UActorComponent
 {

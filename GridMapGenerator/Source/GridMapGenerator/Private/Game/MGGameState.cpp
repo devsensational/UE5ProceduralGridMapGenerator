@@ -33,10 +33,10 @@ void AMGGameState::SetMapSeed(const FString& NewMapSeed)
 
 void AMGGameState::OnRep_ChangeMapSeed()
 {
-	UE_LOG(LogTemp, Log, TEXT("Map seed changed to: %s"), *MapSeed);
+	LOG_NET(LogTemp, Log, TEXT("Map seed changed to: %s"), *MapSeed);
 
 	if (MapGeneratorComponent)
 	{
-		MapGeneratorComponent->GenerateMap(MapSeed);
+		MapGeneratorComponent->GenerateMap("test:" + MapSeed);
 	}
 }
