@@ -2,6 +2,7 @@
 
 #include "Game/MGGameState.h"
 
+#include "Game/Component/MGMapGeneratorComponent.h"
 #include "GridMapGenerator/GridMapGenerator.h"
 #include "Net/UnrealNetwork.h"
 
@@ -10,6 +11,8 @@ AMGGameState::AMGGameState()
 	bReplicates = true;
 	
 	MapSeed = TEXT("");
+
+	MapGeneratorComponent = CreateDefaultSubobject<UMGMapGeneratorComponent>(TEXT("MapGeneratorComponent"));
 }
 
 void AMGGameState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -28,15 +31,12 @@ void AMGGameState::SetMapSeed(const FString& NewMapSeed)
 	}
 }
 
-void AMGGameState::GenerateMap(const FString& MapSeed)
-{
-	TArray<FString> Seed;
-	MapSeed.ParseIntoArray(Seed, TEXT(":"), true);
-}
-
 void AMGGameState::OnRep_ChangeMapSeed()
 {
 	UE_LOG(LogTemp, Log, TEXT("Map seed changed to: %s"), *MapSeed);
 
-	GenerateMap(MapSeed);
+	if (MapGeneratorComponent)
+	{
+		MapGeneratorComponent->GenerateMap(MapSeed);
+	}
 }

@@ -23,5 +23,4 @@ class GRIDMAPGENERATOR_API IMGProceduralMap
 public:
 	virtual FString GetMapSeed() const = 0;
 	virtual void SetMapSeed(const FString& NewMapSeed) = 0;
-	virtual void GenerateMap(const FString& MapSeed) = 0;
 };

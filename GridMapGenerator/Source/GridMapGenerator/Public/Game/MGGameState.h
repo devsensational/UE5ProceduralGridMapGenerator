@@ -8,6 +8,7 @@
 #include "Net/UnrealNetwork.h"
 #include "MGGameState.generated.h"
 
+class UMGMapGeneratorComponent;
 /**
  * 랜덤 시드를 모든 클라이언트에 복제하는 GameState 클래스
  */
@@ -27,7 +28,6 @@ protected:
 public:
 	FORCEINLINE virtual FString GetMapSeed() const override { return MapSeed; };
 	virtual void SetMapSeed(const FString& NewMapSeed) override;
-	virtual void GenerateMap(const FString& MapSeed) override;
 	
 protected:
 	UFUNCTION()
@@ -37,4 +37,10 @@ private:
 	// NOTE: MapSeed는 MapName:MapWidth:MapHeight:Seed 형식의 문자열로 저장됨
 	UPROPERTY(ReplicatedUsing = OnRep_ChangeMapSeed, BlueprintReadOnly, Category = "Seed", meta = (AllowPrivateAccess = "true"))
 	FString MapSeed;
+
+	/* Map Generator 섹션 */
+protected:
+	UPROPERTY()
+	TObjectPtr<UMGMapGeneratorComponent> MapGeneratorComponent;
+	
 };
